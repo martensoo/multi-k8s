@@ -3,10 +3,10 @@ services:
   - docker
 env:
   global
-   - SHA=$(git rev-parse HEAD)
-   - CLOUDSDK_CORE_DISABLE_PROMPTS=1
+    - SHA=$(git rev-parse HEAD)
+    - CLOUDSDK_CORE_DISABLE_PROMPTS=1
 before_install:
-  - openssl aes-256-cbc -K $encrypted_8a8891480e43_key -iv $encrypted_8a8891480e43_iv -in marten.json.enc -out marten.json -d
+  - openssl aes-256-cbc -K $encrypted_8a8891480e43_key -iv $encrypted_8a8891480e43_iv - in marten.json.enc -out marten.json -d
   - curl https://sdk.cloud.google.com | bash > /dev/null;
   - source $HOME/google-cloud-sdk/path.bash.inc
   - gcloud components update kubectl
@@ -20,9 +20,9 @@ before_install:
 script:
   - docker run -e CI=true martensoo/react-test npm test
  
- deploy:
-   provider: script
-   script: bash ./deploy.sh
-   on:
-     branch: master
+deploy:
+  provider: script
+  script: bash ./deploy.sh
+  on:
+    branch: master
      
